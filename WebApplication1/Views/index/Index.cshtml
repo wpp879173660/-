@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <h1>经纪人管理系统</h1>
+        <form action="/index/index" method="post">
+            相亲对象姓名<input type="text" name="Name"/>
+            描述<input type="text" name="Remark"/>
+            经纪人类型<select name="ID">
+    <option value="-1">全部</option>
+    @{
+        foreach (var item in ViewBag.type)
+        {
+            <option value="@item.ID">@item.TypeInfoName</option>
+        }
+    }
+</select>
+            <input type="submit" value="提交"/>
+        </form>
+       
+            <table border="1" cellspacing="0">
+                <tr>
+                    <th>ID</th>
+                    <th>相亲对象姓名</th>
+                    <th>相亲日期</th>
+                    <th>描述</th>
+                    <th>经纪人类型</th>
+                    <th>操作</th>
+                </tr>
+                @{ 
+                    foreach (var i in Model)
+                    {
+                                <tr>
+                                    <td>@i.ID</td>
+                                    <td>@i.Name</td>
+                                    <td>@i.Date</td>
+                                    <td>@i.Remark</td>
+                                    <td>@i.TypeInfoName</td>
+                                    <td><a href="/index/delete?id=@i.ID">删除</a></td>
+                                </tr>
+                    }
+                }
+            </table>
+        
+    </div>
+</body>
+</html>
